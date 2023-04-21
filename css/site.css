@@ -195,3 +195,8 @@ footer {
   max-width: 400px;
 }
 
+ @media (max-width: 767px) {
+  #calculateButton {
+    width: 100% !important;
+  }
+ }
