@@ -195,9 +195,9 @@ footer {
 }
 
 .customGap {
-  gap: 0.3rem;
-  padding-left: 0;
-  padding-right: calc(var(--bs-gutter-x) * .6);
+    gap: 0.5rem;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 @media (max-width: 767px) {
@@ -212,8 +212,10 @@ footer {
   }
 }
 
-@media (max-width: 575px){
-  .paymentStatsLabel{
-  text-align: center !important;
+@media (min-width: 576px) {
+  .customGap {
+    gap: 0.3rem;
+    padding-left: 0;
+    padding-right: calc(var(--bs-gutter-x) * 0.6);
   }
 }
