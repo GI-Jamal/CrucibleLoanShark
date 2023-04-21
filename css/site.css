@@ -205,3 +205,9 @@ footer {
     margin-bottom: 0;
   }
 }
+
+@media (max-width: 575px){
+  .paymentStatsLabel{
+  text-align: center !important;
+  }
+}
