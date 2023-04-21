@@ -229,3 +229,10 @@ footer {
     text-align: center;
   }
 }
+@media (max-width: 239px)
+{
+  #appName
+  {
+    display: none;
+  }
+}

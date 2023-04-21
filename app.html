@@ -61,8 +61,8 @@
             class="navbar-brand border-top border-bottom border-white"
             href="/index.html"
           >
-            <img src="/img/JG Logo White.svg" height="40" />
-            APP NAME
+            <img src="/img/JG Logo White.svg" height="40" class="img-fluid" style="max-height: 40px;"/>
+            <span id="appName">APP NAME</span>
             <!--  TODO: play around with height of image with the height attribute -->
           </a>
           <!-- TODO: customize mobile menu button, and complete navbar -->
@@ -385,6 +385,8 @@
 
     <!-- Custom JS -->
     <script src="/js/site.js"></script>
-    <script></script>
+    <script>
+      document.getElementByTagName("body").addEventListener("resize", isOverflow())
+    </script>
   </body>
 </html>
