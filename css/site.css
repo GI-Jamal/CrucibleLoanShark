@@ -182,7 +182,6 @@ footer {
   padding-right: 0.5rem;
 }
 
-
 .devIcons img {
   max-width: 10%;
 }
@@ -195,8 +194,14 @@ footer {
   max-width: 400px;
 }
 
- @media (max-width: 767px) {
+@media (max-width: 767px) {
   #calculateButton {
     width: 100% !important;
   }
- }
+}
+
+@media (min-width: 768px) {
+  .form-label {
+    margin-bottom: 0;
+  }
+}
