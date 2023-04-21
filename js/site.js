@@ -82,6 +82,11 @@ function buildTable(loanAmount, loanTerm, loanRate, monthlyPayment) {
     let principal = monthlyPayment - interest;
     let balance = paymentRows[i - 1].balance - principal;
 
+    if (balance <= 0)
+    {
+      balance = 0;
+    }
+
     let paymentRow = {
       month: i,
       payment: monthlyPayment,
