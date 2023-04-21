@@ -194,6 +194,12 @@ footer {
   max-width: 400px;
 }
 
+.customGap {
+  gap: 0.3rem;
+  padding-left: 0;
+  padding-right: calc(var(--bs-gutter-x) * .6);
+}
+
 @media (max-width: 767px) {
   #calculateButton {
     width: 100% !important;
