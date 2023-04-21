@@ -195,9 +195,14 @@ footer {
 }
 
 .customGap {
-    gap: 0.5rem;
-    padding-left: 0;
-    padding-right: 0;
+  gap: 0.5rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.mainMargins {
+  margin-top: 5.5rem;
+  margin-bottom: 3rem;
 }
 
 @media (max-width: 767px) {
@@ -220,8 +225,7 @@ footer {
   }
 }
 
-@media (max-width: 250px)
-{
+@media (max-width: 250px) {
   .fullWidth {
     flex: 0, 0, auto;
     width: 100% !important;
@@ -229,10 +233,15 @@ footer {
     text-align: center;
   }
 }
-@media (max-width: 239px)
-{
-  #appName
-  {
+@media (max-width: 240px) {
+  #appName {
     display: none;
+  }
+}
+
+@media (min-width: 241px) {
+  #brandLogo {
+    border-top: solid 0.1px;
+    border-bottom: solid 0.1px;
   }
 }

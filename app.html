@@ -52,14 +52,15 @@
     <header id="home">
       <!-- Mobile Navigation Bar -->
       <nav
-        class="navbar navbar-expand-lg shadow-lg d-sm-none"
+        class="navbar navbar-expand-lg shadow-lg fixed-top d-sm-none"
         data-bs-theme="dark"
         id="mainNav"
       >
         <div class="container-xxl">
           <a
-            class="navbar-brand border-top border-bottom border-white"
+            class="navbar-brand"
             href="/index.html"
+            id="brandLogo"
           >
             <img src="/img/JG Logo White.svg" height="40" class="img-fluid" style="max-height: 40px;"/>
             <span id="appName">APP NAME</span>
@@ -124,7 +125,7 @@
 
       <!-- Desktop Navigation Bar -->
       <nav
-        class="navbar navbar-expand-lg d-none d-sm-block shadow-lg"
+        class="navbar navbar-expand-lg d-none fixed-top d-sm-block shadow-lg"
         data-bs-theme="dark"
         id="mainNav"
       >
@@ -132,6 +133,7 @@
           <a
             class="navbar-brand border-top border-bottom border-white d-flex align-items-center"
             href="/index.html"
+            id="brandLogo"
           >
             <img src="/img/JG Logo White.svg" height="40" />
             APP NAME
@@ -209,7 +211,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container-xxl my-4">
+    <main class="container-xxl mainMargins">
       <div class="row g-2">
         <div class="d-flex flex-column flex-sm-row customGap">
           <!-- Input Area -->
