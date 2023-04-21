@@ -40,8 +40,6 @@
     <link rel="stylesheet" href="/css/prism.css" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/hovercard.css" />
-    <link rel="stylesheet" href="/css/blogCard.css" />
     <link rel="stylesheet" href="/css/site.css" />
 
     <!-- Favicon -->
@@ -49,7 +47,7 @@
     <!-- TODO: change this from CF default favicon, replacement file name MUST be favicon.ico -->
   </head>
   <!-- Change all text with placeholder APP NAME -->
-  <body>
+  <body onload="checkData()">
     <!-- Header Banner -->
     <header id="home">
       <!-- Mobile Navigation Bar -->
@@ -93,8 +91,9 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link active"
-                  aria-current="page" href="/app.html">The App</a>
+                <a class="nav-link active" aria-current="page" href="/app.html"
+                  >The App</a
+                >
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/code.html">The Code</a>
@@ -173,8 +172,12 @@
                   <a class="nav-link" href="/index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active"
-                  aria-current="page" href="/app.html">The App</a>
+                  <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="/app.html"
+                    >The App</a
+                  >
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/code.html">The Code</a>
@@ -207,10 +210,72 @@
 
     <!-- Main Content -->
     <main class="container-xxl my-5">
-      <div>
-        <h1 class="titleText">APP UI GOES HERE</h1>
-        <input type="text" placeholder="Enter a Message" id="message" />
-        <button class="btn btn-primary" id="btnSubmit">Display Message</button>
+      <div class="row">
+        <div class="col-4 d-flex border">
+          <form>
+            <div class="row">
+              <label class="col-4 form-label">Loan Amount</label>
+              <div class="col-8">
+                <input class="form-control" type="number" id="loanAmount"/>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-4 form-label">Term (Months)</label>
+              <div class="col-8">
+                <input class="form-control" type="number" id="loanTerm"/>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-4 form-label">Interest Rate</label>
+              <div class="col-8">
+                <input class="form-control" type="number" id="loanRate"/>
+              </div>
+            </div>
+            <button class="btn btn-primary" type="button" onclick="calculateAmounts()">Calculate</button>
+          </form>
+        </div>
+        <div class="col-8 border">
+          <div class="row row-cols-1">
+            <div class="col d-flex align-items-center justify-content-center">
+              <h1>Your Monthly Payments</h1>
+            </div>
+            <div class="col d-flex align-items-center justify-content-center">
+              <h3><span id="monthlyPayment">$0</span></h3>
+            </div>
+            <div class="col-6"><h5>Total Principal</h5></div>
+            <div class="col-6 d-flex justify-content-end">
+              <h5><span id="totalPrincipal">$0</span></h5>
+            </div>
+            <div class="col-6"><h5>Total Interest</h5></div>
+            <div class="col-6 d-flex justify-content-end">
+              <h5><span id="totalInterest">$0</span></h5>
+            </div>
+            <div class="col-6"><h5>Total Cost</h5></div>
+            <div class="col-6 d-flex justify-content-end">
+              <h5><span id="totalCost">$0</span></h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 border p-0">
+          <div class="table-responsive">
+            <table class="table table-striped table-dark">
+              <thead>
+                <tr>
+                  <th>Month</th>
+                  <th>Payment</th>
+                  <th>Principal</th>
+                  <th>Interest</th>
+                  <th>Total Interest</th>
+                  <th>Balance</th>
+                </tr>
+              </thead>
+              <tbody id="paymentTable">
+                <tr>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </main>
 
@@ -243,6 +308,17 @@
         </div>
       </div>
     </footer>
+
+    <template id="tableRowTemplate">
+      <tr>
+        <td data-id="monthNumber"></td>
+        <td data-id="payment"></td>
+        <td data-id="principal"></td>
+        <td data-id="interest"></td>
+        <td data-id="totalInterest"></td>
+        <td data-id="balance"></td>
+      </tr>
+    </template>
 
     <!-- Bootstrap JS -->
     <script
