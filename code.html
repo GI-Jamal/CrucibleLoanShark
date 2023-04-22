@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
-    <title>APP NAME: A CODING CHALLENGE by Jamal Gibson</title>
+    <title>Money Trees: A Coding Challenge by Jamal Gibson</title>
 
     <!-- Boostrap CSS -->
     <link
@@ -52,7 +52,7 @@
     <header id="home">
       <!-- Mobile Navigation Bar -->
       <nav
-        class="navbar navbar-expand-lg shadow-lg d-sm-none"
+        class="navbar navbar-expand-lg fixed-top shadow-lg d-sm-none"
         data-bs-theme="dark"
         id="mainNav"
       >
@@ -61,8 +61,8 @@
             class="navbar-brand border-top border-bottom border-white"
             href="/index.html"
           >
-            <img src="/img/JG Logo White.svg" height="40" />
-            APP NAME
+            <img src="/img/JG Logo White.svg" class="img-fluid brandImaging" />
+            <span id="appName"> Money Trees</span>
             <!--  TODO: play around with height of image with the height attribute -->
           </a>
           <!-- TODO: customize mobile menu button, and complete navbar -->
@@ -83,20 +83,23 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="/index.html">Home</a>
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="/index.html"
+                  >Home</a
+                >
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/app.html">The App</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/code.html"
-                  >The Code</a
-                >
+                <a class="nav-link" href="/code.html">The Code</a>
               </li>
               <li class="nav-item">
                 <a
                   class="nav-link"
-                  href="https://github.com/GI-Jamal/CrucibleChallengeTemplate"
+                  href="https://github.com/GI-Jamal/CrucibleLoanShark"
                   target="_blank"
                   >The Repo</a
                 >
@@ -119,7 +122,7 @@
 
       <!-- Desktop Navigation Bar -->
       <nav
-        class="navbar navbar-expand-lg d-none d-sm-block shadow-lg"
+        class="navbar navbar-expand-lg d-none fixed-top d-sm-block shadow-lg"
         data-bs-theme="dark"
         id="mainNav"
       >
@@ -128,8 +131,8 @@
             class="navbar-brand border-top border-bottom border-white d-flex align-items-center"
             href="/index.html"
           >
-            <img src="/img/JG Logo White.svg" height="40" />
-            APP NAME
+            <img src="/img/JG Logo White.svg" class="img-fluid brandImaging" />
+            <span id="appName"> Money Trees</span>
             <!--  TODO: play around with height of image with the height attribute -->
           </a>
           <!-- TODO: customize mobile menu button, and complete navbar -->
@@ -164,23 +167,23 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link" href="/index.html">Home</a>
+                  <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="/index.html"
+                    >Home</a
+                  >
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/app.html">The App</a>
                 </li>
                 <li class="nav-item">
-                  <a
-                    class="nav-link active"
-                    aria-current="page"
-                    href="/code.html"
-                    >The Code</a
-                  >
+                  <a class="nav-link" href="/code.html">The Code</a>
                 </li>
                 <li class="nav-item">
                   <a
                     class="nav-link"
-                    href="https://github.com/GI-Jamal/CrucibleChallengeTemplate"
+                    href="https://github.com/GI-Jamal/CrucibleLoanShark"
                     target="_blank"
                     >The Repo</a
                   >
@@ -204,26 +207,155 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container-xxl my-5">
+    <main class="container-xxl mainMargins">
       <h1 class="border-bottom border-2 border-success titleText">The Code</h1>
       <div class="row">
         <div class="col-lg-8 col-12">
           <pre class="line-numbers">
             <code class="language-js">
-function displayMessage() {
-    let msg = document.getElementById("message").value;
-    Swal.fire(
-        {
-            backdrop: false,
-            title: 'App Name',
-            text: msg
-        }
+var USDollar = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
+function calculateAmounts() {
+  let loanAmount = parseFloat(document.getElementById("loanAmount").value);
+  let loanTerm = parseInt(document.getElementById("loanTerm").value);
+  let loanRate = parseFloat(document.getElementById("loanRate").value);
+
+  if (loanAmount > 0 && loanTerm > 0 && loanRate > 0) {
+    let monthlyPayment =
+      (loanAmount * (loanRate / 1200)) /
+      (1 - (1 + loanRate / 1200) ** (-1 * loanTerm));
+
+    let totalCost = monthlyPayment * loanTerm;
+    let totalInterest = totalCost - loanAmount;
+
+    setAmounts(monthlyPayment, loanAmount, totalInterest, totalCost);
+    buildTable(loanAmount, loanTerm, loanRate, monthlyPayment);
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "Oops!",
+      text: "Please enter valid values.",
+      backdrop: "false",
+      heightAuto: "false",
+    });
+  }
+}
+
+function setAmounts(monthlyPayment, principalAmount, totalInterest, totalCost) {
+  document.getElementById("monthlyPayment").textContent =
+    USDollar.format(monthlyPayment);
+
+  document.getElementById("totalPrincipal").textContent =
+    USDollar.format(principalAmount);
+
+  document.getElementById("totalCost").textContent = USDollar.format(totalCost);
+
+  document.getElementById("totalInterest").textContent =
+    USDollar.format(totalInterest);
+
+  let paymentStats = {
+    monthlyPayment: monthlyPayment,
+    principalAmount: principalAmount,
+    totalInterest: totalInterest,
+    totalCost: totalCost,
+  };
+
+  localStorage.setItem("jgPaymentStats", JSON.stringify(paymentStats));
+}
+
+function buildTable(loanAmount, loanTerm, loanRate, monthlyPayment) {
+  let paymentRows = [
+    {
+      month: 0,
+      payment: 0,
+      principal: 0,
+      interest: 0,
+      totalInterest: 0,
+      balance: loanAmount,
+    },
+  ];
+
+  let paymentTable = document.getElementById("paymentTable");
+  let template = document.getElementById("tableRowTemplate");
+  paymentTable.innerHTML = "";
+
+  for (let i = 1; i &lt;= loanTerm; i++) {
+    let tableRow = document.importNode(template.content, true);
+
+    let interest = paymentRows[i - 1].balance * (loanRate / 1200);
+    let totalInterest = paymentRows[i - 1].totalInterest + interest;
+    let principal = monthlyPayment - interest;
+    let balance = paymentRows[i - 1].balance - principal;
+
+    if (balance &lt;= 0) {
+      balance = 0;
+    }
+
+    let paymentRow = {
+      month: i,
+      payment: monthlyPayment,
+      principal: principal,
+      interest: interest,
+      totalInterest: totalInterest,
+      balance: balance,
+    };
+
+    paymentRows.push(paymentRow);
+
+    tableRow.querySelector('[data-id="monthNumber"]').textContent = i;
+    tableRow.querySelector('[data-id="payment"]').textContent =
+      USDollar.format(monthlyPayment);
+    tableRow.querySelector('[data-id="principal"]').textContent =
+      USDollar.format(principal);
+    tableRow.querySelector('[data-id="interest"]').textContent =
+      USDollar.format(interest);
+    tableRow.querySelector('[data-id="totalInterest"]').textContent =
+      USDollar.format(totalInterest);
+    tableRow.querySelector('[data-id="balance"]').textContent =
+      USDollar.format(balance);
+
+    paymentTable.appendChild(tableRow);
+  }
+
+  let paymentInput = {
+    loanAmount: loanAmount,
+    loanTerm: loanTerm,
+    loanRate: loanRate,
+    monthlyPayment: monthlyPayment,
+  };
+
+  localStorage.setItem("jgPaymentInput", JSON.stringify(paymentInput));
+}
+
+function checkData() {
+  data1 = localStorage.getItem("jgPaymentStats");
+  data2 = localStorage.getItem("jgPaymentInput");
+
+  if (data1 != null && data2 != null) {
+    paymentStats = JSON.parse(data1);
+    paymentInput = JSON.parse(data2);
+
+    setAmounts(
+      paymentStats.monthlyPayment,
+      paymentStats.principalAmount,
+      paymentStats.totalInterest,
+      paymentStats.totalCost
     );
+    buildTable(
+      paymentInput.loanAmount,
+      paymentInput.loanTerm,
+      paymentInput.loanRate,
+      paymentInput.monthlyPayment
+    );
+  }
 }
             </code>
           </pre>
         </div>
-        <div class="col-lg-4 col-12">
+        <div class="col-lg-4 col-12 mt-2">
           <p>The code is structured in one function</p>
           <h5>displaMessage</h5>
           <p>print out the message</p>
@@ -238,7 +370,10 @@ function displayMessage() {
           class="footer-main py-3 row row-cols-1 row-cols-md-3 align-items-center text-center gy-3 gy-md-0"
         >
           <div class="col">
-            <img src="/img/Jamal Name Logo White.png" height="40" />
+            <img
+              src="/img/Jamal Name Logo White.png"
+              class="img-fluid brandImaging"
+            />
             <!-- TODO: change image height and image -->
           </div>
           <div class="col text-md-end order-first order-md-last">
@@ -249,9 +384,6 @@ function displayMessage() {
             ></a>
             <a href="https://github.com/GI-Jamal" target="_blank"
               ><i class="socialicons bi bi-github p-2"></i
-            ></a>
-            <a href="https://twitter.com/GI__Jamal" target="_blank"
-              ><i class="socialicons bi bi-twitter p-2"></i
             ></a>
           </div>
           <div class="col text-light order-md-first text-md-start">

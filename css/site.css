@@ -205,14 +205,11 @@ footer {
   margin-bottom: 3rem;
 }
 
-/* Media Queries*/
-
-@media (min-width: 241px) {
-  #brandLogo {
-    border-top: solid 0.1px;
-    border-bottom: solid 0.1px;
-  }
+.brandImaging {
+  max-height: 40px !important;
 }
+
+/* Media Queries*/
 
 @media (max-width: 240px) {
   #appName {
