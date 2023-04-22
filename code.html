@@ -44,9 +44,7 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
-    <!-- TODO: change this from CF default favicon, replacement file name MUST be favicon.ico -->
   </head>
-  <!-- Change all text with placeholder APP NAME -->
   <body>
     <!-- Header Banner -->
     <header id="home">
@@ -63,9 +61,7 @@
           >
             <img src="/img/JG Logo White.svg" class="img-fluid brandImaging" />
             <span id="appName"> Money Trees</span>
-            <!--  TODO: play around with height of image with the height attribute -->
           </a>
-          <!-- TODO: customize mobile menu button, and complete navbar -->
           <button
             class="navbar-toggler"
             type="button"
@@ -133,9 +129,7 @@
           >
             <img src="/img/JG Logo White.svg" class="img-fluid brandImaging" />
             <span id="appName"> Money Trees</span>
-            <!--  TODO: play around with height of image with the height attribute -->
           </a>
-          <!-- TODO: customize mobile menu button, and complete navbar -->
           <button
             class="navbar-toggler"
             type="button"
@@ -356,9 +350,47 @@ function checkData() {
           </pre>
         </div>
         <div class="col-lg-4 col-12 mt-2">
-          <p>The code is structured in one function</p>
-          <h5>displaMessage</h5>
-          <p>print out the message</p>
+          <p>The code is structured in four functions:</p>
+          <hr />
+          <h5>calculateAmounts():</h5>
+          <p>
+            This function retrieves the values input by the user and parses them
+            into numerical values before validating whether all the inputs are
+            greater than 0. If the user's inputs are valid, then the function
+            calls the functions setAmounts() and buildTable(), passing them the
+            required arguments to display the calculated values on the page.
+          </p>
+
+          <hr />
+          <h5>setAmounts():</h5>
+          <p>
+            This function sets the calculated values in various HTML elements on
+            the page, and also stores the values in localStorage.
+          </p>
+          <hr />
+          <h5>buildTable():</h5>
+          <p>
+            This function calculates and displays a table of payment information
+            for each month of the loan term, and also stores the input values in
+            localStorageThis function calculates and displays a table of payment
+            information for each month of the loan term, and also stores the
+            input values in localStorage.
+          </p>
+          <hr />
+          <h5>checkData():</h5>
+          <p>
+            This function retrieves the calculated values and input values from
+            localStorage and displays them on the page if they exist.
+          </p>
+          <hr />
+          <p>
+            Overall, these functions work together to provide a loan calculator
+            that allows users to input loan details, calculates and displays the
+            monthly payment, total cost, and total interest, and shows a table
+            of payment information for each month of the loan term. The
+            calculated values and input values are stored in localStorage so
+            that they persist across page refreshes.
+          </p>
         </div>
       </div>
     </main>
@@ -374,7 +406,6 @@ function checkData() {
               src="/img/Jamal Name Logo White.png"
               class="img-fluid brandImaging"
             />
-            <!-- TODO: change image height and image -->
           </div>
           <div class="col text-md-end order-first order-md-last">
             <a
