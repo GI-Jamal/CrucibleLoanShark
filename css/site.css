@@ -238,6 +238,10 @@ footer {
   #calculateButton {
     width: 100% !important;
   }
+
+  .appLogo {
+    margin-bottom: 1rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -245,3 +249,11 @@ footer {
     margin-bottom: 0;
   }
 }
+
+@media (max-width: 451px) {
+  .appLogo {
+    max-width: 200px;
+    margin-bottom: 1rem;
+  }
+}
+
