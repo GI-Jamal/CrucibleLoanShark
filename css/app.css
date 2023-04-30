@@ -1,0 +1,34 @@
+.customGap {
+  gap: 0.5rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (max-width: 250px) {
+  .fullWidth {
+    flex: 0, 0, auto;
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center;
+  }
+}
+
+@media (min-width: 576px) {
+  .customGap {
+    gap: 0.3rem;
+    padding-left: 0;
+    padding-right: calc(var(--bs-gutter-x) * 0.6);
+  }
+}
+
+@media (max-width: 767px) {
+  #calculateButton {
+    width: 100% !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .form-label {
+    margin-bottom: 0;
+  }
+}
